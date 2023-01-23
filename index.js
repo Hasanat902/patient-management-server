@@ -96,6 +96,12 @@ async function run(){
             res.status(403).send({accessToken: ''});
         });
 
+        app.get('/appointmentSpecialty', async(req, res) => {
+            const query = {};
+            const result = await appointmentOptionCollection.find(query).project({name: 1}).toArray();
+            res.send(result);
+        })
+
         app.get('/users', async(req, res) => {
             const query = {};
             const users = await usersCollection.find(query).toArray();
